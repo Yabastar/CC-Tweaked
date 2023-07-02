@@ -31,7 +31,7 @@ local function appendDriverAssignment(filename, key, value)
   local lua_code_lines = readLuaCode(filename)
 
   -- Construct the assignment string
-  local assignment = string.format('driver["%s"] = "%s"', key, value)
+  local assignment = string.format('drivers["%s"] = "%s"', key, value)
   table.insert(lua_code_lines, assignment)
 
   writeLuaCode(filename, lua_code_lines)
@@ -41,7 +41,7 @@ local function getDriverValue(filename, key)
   local lua_code_lines = readLuaCode(filename)
 
   -- Find the assignment for the specified key
-  local pattern = string.format('driver\\["%s"\\]%s*=.-', key, '%s*')
+  local pattern = string.format('drivers\\["%s"\\]%s*=.-', key, '%s*')
   for i, line in ipairs(lua_code_lines) do
     if line:match(pattern) then
       local value = line:match('"(.*)"')
@@ -55,8 +55,8 @@ end
 
 -- Main logic
 if #args < 3 then
-  print("Usage: drivers set [key] [value]")
-  print("       drivers get [key]")
+  print("Usage: drivermod set [key] [value]")
+  print("       drivermod get [key]")
   print("\nFind examples of how to use the drivers in the 'examples' folder located in the folder 'rom'.")
   return
 end
