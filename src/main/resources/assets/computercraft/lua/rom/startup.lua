@@ -178,3 +178,8 @@ if tUserStartups then
         shell.run(v)
     end
 end
+
+
+shell.run("mkdir examples")
+file = io.open("examples/driver.lua", "w")
+file:write("local driver = dofile('drivers.lua')\nfile_name = driver['a_driver']\nlocal variable,variable2 = dofile(file_name)")
